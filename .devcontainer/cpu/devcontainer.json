@@ -6,11 +6,22 @@
 		"context": "../.."
 	},
 
+	"runArgs": [
+        "-v", "/tmp/.X11-unix:/tmp/.X11-unix",
+        "-v", "/mnt/wslg:/mnt/wslg"
+    ],
+
+	"containerEnv": {
+        "DISPLAY": "${localEnv:DISPLAY}",
+        "WAYLAND_DISPLAY": "${localEnv:WAYLAND_DISPLAY}",
+        "XDG_RUNTIME_DIR": "${localEnv:XDG_RUNTIME_DIR}",
+        "PULSE_SERVER": "${localEnv:PULSE_SERVER}"
+    },
+
 	"postCreateCommand": "pip install fake-bpy-module-latest",
 
 	"customizations": {
 		"vscode": {
-			// コンテナ内に自動でインストールするVS Code拡張機能
 			"extensions": [
 				"ms-python.python",
 				"JacquesLucke.blender-development"
